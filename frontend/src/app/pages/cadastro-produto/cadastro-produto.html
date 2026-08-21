@@ -1,0 +1,22 @@
+<div style="border: 1px solid #ccc; padding: 16px; margin-bottom: 20px; border-radius: 8px;">
+  <h3>Cadastro de Produto</h3>
+  <form (ngSubmit)="cadastrar()">
+    <div>
+      <label>Código: </label>
+      <input type="text" [(ngModel)]="produto.codigo" name="codigo" required>
+    </div>
+    <br>
+    <div>
+      <label>Descrição: </label>
+      <input type="text" [(ngModel)]="produto.descricao" name="descricao" required>
+    </div>
+    <br>
+    <div>
+      <label>Saldo Inicial: </label>
+      <input type="number" [(ngModel)]="produto.saldo" name="saldo" required>
+    </div>
+    <br>
+    <button type="submit">Salvar Produto</button>
+  </form>
+  <p *ngIf="mensagem"><b>{{ mensagem }}</b></p>
+</div>

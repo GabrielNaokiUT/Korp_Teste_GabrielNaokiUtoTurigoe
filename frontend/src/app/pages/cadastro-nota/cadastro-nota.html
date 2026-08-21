@@ -1,0 +1,45 @@
+<div style="border: 1px solid #ccc; padding: 16px; margin-bottom: 20px; border-radius: 8px;">
+  <h3>Cadastro de Nota Fiscal</h3>
+  <form (ngSubmit)="cadastrar()">
+    <div>
+      <label>Número da Nota (Sequencial): </label>
+      <input type="number" [(ngModel)]="nota.numero" name="numero" required>
+    </div>
+    <br>
+    <div>
+      <label>Status Inicial: </label>
+      <input type="text" [(ngModel)]="nota.status" name="status" readonly>
+    </div>
+    <br>
+    <h4>Produtos da Nota</h4>
+    <div *ngFor="let item of nota.itens; let i = index" style="margin-bottom: 8px;">
+      <label>Código do Produto: </label>
+      <input type="text" [(ngModel)]="item.produtoCodigo" name="prod_{{i}}" placeholder="Ex: PROD01" required>
+      <label> Qtd: </label>
+      <input type="number" [(ngModel)]="item.quantidade" name="qtd_{{i}}" required min="1">
+    </div>
+    <button type="button" (click)="adicionarItem()">+ Adicionar Outro Produto</button>
+    <br><br>
+    <button type="submit">Emitir Nota Fiscal</button>
+  </form>
+  <p *ngIf="mensagem"><b>{{ mensagem }}</b></p>
+
+  <hr style="margin: 20px 0;">
+
+  <h3>Notas Fiscais Cadastradas</h3>
+  <div *ngIf="notasList.length === 0"><i>Nenhuma nota cadastrada ainda.</i></div>
+
+  <div *ngFor="let n of notasList" style="border: 1px solid #ddd; padding: 12px; margin-bottom: 10px; border-radius: 6px; background: #f9f9f9;">
+    <p><strong>Nota Nº:</strong> {{ n.numero }} | <strong>Status:</strong> <span [style.color]="n.status === 'Fechada' ? 'green' : 'orange'">{{ n.status }}</span></p>
+    <p><strong>Itens da Nota:</strong></p>
+    <ul>
+      <li *ngFor="let item of n.itens">
+        Código Produto: <b>{{ item.produtoCodigo }}</b> — Quantidade: <b>{{ item.quantidade }}</b>
+      </li>
+    </ul>
+    <button *ngIf="n.status === 'Aberta'" (click)="imprimir(n.id)" [disabled]="carregandoId === n.id">
+      {{ carregandoId === n.id ? 'Processando Impressão...' : '🖨️ Imprimir Nota Fiscal' }}
+    </button>
+    <span *ngIf="n.status === 'Fechada'" style="color: green; font-weight: bold;">✔ Nota Impressa / Fechada</span>
+  </div>
+</div>
