@@ -31,7 +31,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     </div>
   `
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class App implements OnInit, OnDestroy {
   loading = false;
   status = 'Aberta'; // Status inicial obrigatório[cite: 1]
   private sub: Subscription = new Subscription();
