@@ -17,7 +17,7 @@ Sistema completo de emissão de notas fiscais e controle de estoque construído 
 
 O sistema é dividido em 3 camadas independentes:
 
-┌───────────────────────────────┐
+              ┌───────────────────────────────┐
               │       Frontend Angular        │
               │    http://localhost:4200      │
               └──────────────┬────────────────┘
@@ -29,13 +29,13 @@ O sistema é dividido em 3 camadas independentes:
 │       Serviço de Estoque        │   │     Serviço de Faturamento      │
 │     http://localhost:8081       │   │     http://localhost:8082       │
 └────────────────┬────────────────┘   └────────────────┬────────────────┘
-│                                     │
-└──────────────────┬──────────────────┘
-▼
-┌────────────────────┐
-│ Banco de Dados     │
-│ PostgreSQL / Mem   │
-└────────────────────┘
+                 │                                     │
+                 └──────────────────┬──────────────────┘
+                                    ▼
+                          ┌────────────────────┐
+                            Banco de Dados     │
+                          │ PostgreSQL / Mem   │
+                          └────────────────────┘
 
 *O serviço iniciará na porta `8081`.*
 
@@ -66,6 +66,4 @@ Acesse a aplicação no navegador através do endereço: **`http://localhost:420
 
 ## 👤 Autor
 
-Desenvolvido por **Gabriel Naoki Uto Turigoe** como parte do desafio técnico da KORP.
-
-* 🐙 **GitHub:** [@GabrielNaokiUT](https://github.com/GabrielNaokiUT)
+[@GabrielNaokiUT](https://github.com/GabrielNaokiUT)
